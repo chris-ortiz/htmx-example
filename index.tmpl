@@ -10,7 +10,7 @@
     {{range .}}
         {{block "item" .}}
             <li>
-                <input type="checkbox" id="item{{.Id}}" name="item{{.Id}}" value="{{.Id}}">
+                <input type="checkbox" id="item{{.Id}}" hx-delete="/item/{{.Id}}" hx-target="closest li" hx-swap="outerHTML" name="item{{.Id}}" value="{{.Id}}">
                 <label for="item{{.Id}}"> {{.Text}}</label>
             </li>
         {{end}}
@@ -20,7 +20,7 @@
     <p><label for="input-todo">What should we do next?</label></p>
     <textarea id="input-todo" name="input-todo" rows="4" cols="50"></textarea>
     <br>
-    <button type="button" hx-post="/item" hx-target="#items" hx-swap="beforeend">Add</button>
+    <button type="button" hx-post="/item" hx-target="#items" hx-swap="innerHTML">Add</button>
 </form>
 </body>
 </html>

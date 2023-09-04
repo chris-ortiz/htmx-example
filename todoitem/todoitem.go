@@ -13,10 +13,15 @@ type TodoItem struct {
 type ItemStore interface {
 	Add(item *TodoItem)
 	FindAll() []TodoItem
+	Delete(id int)
 }
 
 type ItemDB struct {
 	db *sql.DB
+}
+
+func (itemDB ItemDB) Delete(id int) {
+	_, _ = itemDB.db.Exec("DELETE FROM item WHERE id = ?", id)
 }
 
 func (itemDB ItemDB) Add(item *TodoItem) {
